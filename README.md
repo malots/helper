@@ -1,2 +1,2 @@
 # helpers
-Helpers package
+Helper package
