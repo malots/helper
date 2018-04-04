@@ -1,4 +1,5 @@
 import console from 'console';
+import fs from 'fs';
 
 // - Função para listar os arquivos de um diretório
 function listFiles(path) {

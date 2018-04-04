@@ -8,15 +8,15 @@ var _md = require('md5');
 
 var _md2 = _interopRequireDefault(_md);
 
-var _sha = require('sha512');
+var _jsSha = require('js-sha512');
 
-var _sha2 = _interopRequireDefault(_sha);
+var _jsSha2 = _interopRequireDefault(_jsSha);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // - Função utilizada para criptografar senhas
 function hash(value) {
-    return (0, _sha2.default)((0, _md2.default)(value));
+    return value.trim() != '' ? (0, _jsSha2.default)((0, _md2.default)(value.trim())) : '';
 }
 
 exports.default = hash;
@@ -31,13 +31,17 @@ var _console = require('console');
 
 var _console2 = _interopRequireDefault(_console);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // - Função para listar os arquivos de um diretório
 function listFiles(path) {
     var files = [];
     try {
-        fs.readdirSync(path).forEach(function (file) {
+        _fs2.default.readdirSync(path).forEach(function (file) {
             files.push(file);
         });
     } catch (err) {
@@ -105,19 +109,19 @@ exports.parseJson = parseJson;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 // - Função para normalizar o caminho de um diretório
 function normalizePath(path) {
-	if (path != '') {
-		if (!path.startsWith('/')) {
-			path = '/' + path;
-		}
-		if (!path.endsWith('/')) {
-			path += '/';
-		}
-	}
-	return path.trim();
+    if (path != '') {
+        if (!path.startsWith('/')) {
+            path = '/' + path;
+        }
+        if (!path.endsWith('/')) {
+            path += '/';
+        }
+    }
+    return path.trim();
 }
 
 exports.normalizePath = normalizePath;
