@@ -2,15 +2,15 @@
   "name": "@malots/helper",
   "version": "1.0.0",
   "description": "helper package",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "babel-node ./test/tests.js",
-    "start": "babel-node index.js",
-    "build": "babel src --out-file index.js"
+    "start": "babel-node ./src/index.js",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leovene/helper.git"
+    "url": "git+https://github.com/malots/helper.git"
   },
   "keywords": [
     "helper"
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "js-sha512": "^0.7.1",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "moment": "^2.22.0"
   }
 }

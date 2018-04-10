@@ -1,5 +1,5 @@
 import test from 'tape';
-import { normalizePath, listFiles, hash } from '../src/helpers';
+import { normalizePath, listFiles, fileExists, readFile, hash, parseJson, isDate, now } from '../src/index';
 
 test('Should return normalized path', function(t) {
     const path = 'path/to/my/test';
@@ -19,9 +19,9 @@ test('Should return normalized path with one word in string', function(t) {
     t.end();
 });
 
-test('Should return one file called tests.js', function(t) {
+test('Should return two files called test.js and tests.json', function(t) {
     const path = './test';
-    t.isEquivalent(listFiles(path),['tests.js']);
+    t.isEquivalent(listFiles(path),['test.json','tests.js']);
     t.end();
 });
 
@@ -43,6 +43,37 @@ test('Should return empty with empty value', function(t) {
     const value = '';
     const content = '';
     t.equal(hash(content),value);
+    t.end();
+});
+
+test('Should parse json file', function(t) {
+    const obj = parseJson('./test/test.json');
+    t.true(obj.status);
+    t.equal(obj.data.keyOne,'valueOne');
+    t.equal(obj.data.keyTwo,'valueTwo');
+    t.end();
+});
+
+test('Return file exists test.json true', function(t) {
+    t.true(fileExists('./test/test.json'));
+    t.end();
+});
+
+test('Return file exists invalid.json false', function(t) {
+    t.false(fileExists('./test/invalid.json'));
+    t.end();
+});
+
+test('Read file content', function(t) {
+    const result = readFile('./test/test.json');
+    t.true(result.status);
+    t.end();
+});
+
+test('Return file not found message', function(t) {
+    const result = readFile('./test/invalid.json');
+    t.false(result.status);
+    t.equal(result.message, 'File not found');
     t.end();
 });
 

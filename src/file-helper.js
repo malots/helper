@@ -1,7 +1,6 @@
 import console from 'console';
 import fs from 'fs';
 
-// - Função para listar os arquivos de um diretório
 function listFiles(path) {
     const files = [];
     try {
@@ -14,4 +13,25 @@ function listFiles(path) {
     return files;
 }
 
-export { listFiles };
+function fileExists(file) {
+    try {
+        return fs.existsSync(file);
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+}
+
+function readFile(file,encoding = 'utf8') {
+    try {
+        if (fileExists(file)) {
+            return { status: true, message: file, data: fs.readFileSync(file, encoding) }
+        } else {
+            return { status: false, message: 'File not found' }
+        }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export { listFiles, fileExists, readFile };

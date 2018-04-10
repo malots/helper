@@ -1,23 +1,26 @@
 import console from 'console';
+import { readFile } from './file-helper';
 
-// - Função para converter o conteúdo de um arquivo em um objeto javascript
 function parseJson(file,encoding='utf8') {
     let obj = {};
-    try{
-        obj = {
-            status: true,
-            message: 'File read successfully',
-            data: JSON.parse(fs.readFileSync(file, encoding))
-        };
-    } catch(err) {
-        obj = {
-            status: false,
-            message: 'Invalid file'
-        };
-        console.log(err);
+    const fileContent = readFile(file,encoding);
+    if (fileContent.status) {
+        try{
+            obj = fileContent;
+        } catch(err) {
+            obj = {
+                status: false,
+                message: 'Invalid file format'
+            };
+            console.log(err);
+        }
+    } else {
+        obj =  fileContent;
     }
     return obj;
 }
 
 export { parseJson };
+
+//TODO: finalizar essa função
 
