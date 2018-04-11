@@ -6,7 +6,11 @@ function parseJson(file,encoding='utf8') {
     const fileContent = readFile(file,encoding);
     if (fileContent.status) {
         try{
-            obj = fileContent;
+            obj = {
+                status: true,
+                message: file,
+                data: JSON.parse(fileContent.data)
+            }
         } catch(err) {
             obj = {
                 status: false,
@@ -21,6 +25,4 @@ function parseJson(file,encoding='utf8') {
 }
 
 export { parseJson };
-
-//TODO: finalizar essa função
 

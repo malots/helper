@@ -1,5 +1,5 @@
 import test from 'tape';
-import { normalizePath, listFiles, fileExists, readFile, hash, parseJson, isDate, now } from '../src/index';
+import { normalizePath, listFiles, fileExists, readFile, hash, parseJson, isDate, now, createSelectQuery } from '../src/index';
 
 test('Should return normalized path', function(t) {
     const path = 'path/to/my/test';
@@ -75,6 +75,30 @@ test('Return file not found message', function(t) {
     t.false(result.status);
     t.equal(result.message, 'File not found');
     t.end();
+});
+
+test('Should confirm the value is date',function(t) {
+    const date = '04-06-2018';
+    t.true(isDate(date));
+    t.end();    
+});
+
+test('Should return false of this value is date',function(t) {
+    const date = '0&4-06-2018';
+    t.false(isDate(date));
+    t.end();    
+});
+
+test('Should return now date', function(t) {
+    const date = now();
+    t.true(isDate(date));
+    t.end();
+});
+
+test('Should return a select query',function(t) {
+    const query = createSelectQuery('tableName','col1','col2','col3');
+    t.equal(query,'SELECT COL1, COL2, COL3 FROM TABLENAME');
+    t.end();    
 });
 
 
