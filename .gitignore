@@ -66,6 +66,7 @@ typings/
 #transplied files
 dist/
 
-#gulpfile
-gulpfile.js
+#IDEs
+.vscode/
+.idea/
 

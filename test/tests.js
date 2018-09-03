@@ -1,5 +1,5 @@
 import test from 'tape';
-import { normalizePath, listFiles, fileExists, readFile, hash, parseJson, isDate, now, createSelectQuery } from '../src/index';
+import { normalizePath, listFiles, fileExists, readFile, hash, parseJson, isDate, now, createSelectQuery } from '..';
 
 test('Should return normalized path', function(t) {
     const path = 'path/to/my/test';

@@ -1,12 +1,12 @@
 {
   "name": "@malots/helper",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "helper package",
   "main": "index.js",
   "scripts": {
     "test": "babel-node ./test/tests.js",
     "start": "babel-node ./src/index.js",
-    "build": "babel src -d dist && gulp"
+    "build": "npx rollup ./src/main.js --file index.js --format cjs"
   },
   "repository": {
     "type": "git",
@@ -23,14 +23,14 @@
   "homepage": "https://github.com/malots/helper#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "dotenv": "^5.0.1",
-    "gulp": "^3.9.1",
-    "tape": "^4.9.0"
+    "rollup": "^0.65.0",
+    "tape": "^4.9.1"
   },
   "dependencies": {
     "js-sha512": "^0.7.1",
     "md5": "^2.2.1",
-    "moment": "^2.22.0"
+    "moment": "^2.22.2"
   }
 }
